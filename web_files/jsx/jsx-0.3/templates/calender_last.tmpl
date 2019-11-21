@@ -1,0 +1,46 @@
+<div style='display: none'>
+	<div name=jsx id='#!(undefined!=self.id)?self.id:""' class='jsxCalender'
+			jsxtype=def called='calender' jsxParams='ctrl,date,getOffset,getDays'
+			jsxParam_ctrl='$0'
+			jsxParam_date='#!with(self)(undefined!=params.date)?params.date:((undefined!=params.timestamp)?new Date(params.timestamp):new Date)'
+			jsxParam_getOffset='#!var f=function(){this.date.setDate(1);return this.date.getDay()};f'
+			jsxParam_getDays='#!var f=function(){this.date.setDate(32);this.date.setDate(0);return this.date.getDate()};f'
+		>
+		<table name=jsx class='body' called='calenderBody' jsxType=null jsxParams='offset,days,year,month'
+				jsxParam_year='#!self.params.date.getFullYear()'
+				jsxParam_month='#!self.params.date.getMonth()'
+				jsxParam_offset='#!self.params.getOffset()'
+				jsxParam_days='#!self.params.getDays()'
+		>
+			<tr><td colspan=7 class='header'><table class=header><tr>
+				<td	name=jsx class='navctrl' called=previousMonth jsxtype=null onClick='with(this.self){if(util.istype("function",params,"ctrl","previousMonth")){if(!params.ctrl.previousMonth(params.date))return;}else params.date.setDate(0); actions.refresh(1, false);}'>&lt;&lt;</td>
+				<td class='date'>
+					<span name=jsx jsxtype=value called=monthName jsxDefault='#!self.params.date.getMonth()' whenAssign='with(self)if(util.istype("function",params.ctrl,"lang"))value=params.ctrl.lang("months",value)'>
+					</span>,
+					<span name=jsx jsxtype=value called=year jsxDefault='#!self.params.date.getFullYear()'></span>
+				</td>
+				<td	name=jsx class='navctrl' called=nextMonth jsxtype=null onClick='with(this.self){if(util.istype("function",params.ctrl,"nextMonth")){if(!params.ctrl.nextMonth(params.date)) return;} else params.date.setDate(32);actions.refresh(1, false);}'>&gt;&gt;</td>
+			</tr></table></td></tr>
+
+			<tr class='dayNames'>
+				<th name=jsx jsxType=list called='days_header' jsxDefault="#![0,1,2,3,4,5,6]">
+					<span name=jsx jsxType=value target=self jsxDefault='#!scope[1].stdargs[0]' whenAssign='with(self){if(util.istype("function",params.ctrl,"lang"))value=params.ctrl.lang("dayabr",value)}'></span>
+				</th>
+			</tr>
+			<tr name=jsx class='dayCells' jsxType=list called='day_rows'
+				jsxDefault='#![1,8,15,22,29]'
+				whenRefresh='with(self.params){var v=days+offset;if(v>35 && self.length<6)self.push(36);else if(v<36&&self.length>5)self.pop().destroy();}'
+			>
+				<td name=jsx class='#!"day"+(scope[0].stdargs[0]-self.params.offset)'
+					jsxType=list called='cells'
+					jsxDefault='#!var o=scope[1].stdargs[0];[o+0,o+1,o+2,o+3,o+4,o+5,o+6]'
+					onClick='with(this.self)if (util.istype("function", params, "ctrl", "dayClick"))params.ctrl.dayClick(params.year, params.month, stdargs[0]-params.offset, this);'
+				>&nbsp;
+					<span name=jsx jsxType=value called='#!"day_"+scope[1].stdargs[0]'
+						jsxDefault='#!var v=scope[1].stdargs[0]-self.params.offset;(v<1||v>self.params.days)?"":v'>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

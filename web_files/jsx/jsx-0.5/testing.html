@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<script type=text/javascript src='jquery.js'></script>
+		<script type=text/javascript src='newjsx.js'></script>
+		<script>
+/*
+	 easy method to add selector filters
+	borrowed from James Padolsey, thanks James
+		(http://james.padolsey.com/javascript/extending-jquerys-selector-capabilities/)
+
+	Usage:
+	 $.newSelector(
+		'filter name',
+		function (element, index, match) {
+			// code, returns true or false for element being a match
+		}
+	);
+
+	*** OR ***
+
+	$.newSelector( {
+		someFilter: function (element, index, match) {
+			// code, returns true or false if element is a match
+		},
+		anotherFilter: function (element, index, match) {
+			// ...
+		},
+		// ...
+	});
+
+
+	Match: 
+		0: full filter string
+		1: filter name
+		2: ?
+		3: filter argument string (everything inside the parenthesis:
+			e.g. for: ':filterName(blah,pleh)',  match[3] == 'blah,pleh'
+*/
+
+			(function($){
+				$.newSelector = function() {
+					if(!arguments) { return; }
+					if (typeof(arguments[0])==='object')
+						return $.extend($.expr[':'], arguments[0]);
+					var obj = {};
+					obj[arguments[0]] = arguments[1];
+					return $.extend($.expr[':'], obj);
+				}
+			})(jQuery);
+
+			$.newSelector('jsxType', function (elem, index, match) {
+				return match[3] ? elem.getAttribute('jsxType') === match[3] : !!elem.getAttribute('jsxType');
+			});
+
+			function loaded() {
+				var tmpl_something = new $jsx('something');
+				var instance_something = tmpl_something('another thing');
+				var another = tmpl_something("some other damn thing");
+				var a;
+			}
+		</script>
+		<style>
+			div.blah {
+				background-color: white;
+				color: black;
+			}
+			div.pleh {
+				background-color: black;
+				color: white;
+			}
+		</style>
+	</head><body onload='loaded();'>
+		<div style='display: none'>
+			<div name=jsx jsxType=define called='something' class='#!$_.stdargs[0]'>
+				<div name=jsx jsxType=value called='another'></div>
+				this is a jsx element!
+			</div>
+		</div>
+
+		<div jsx jsx:type='define' jsx:called='templateA' jsx:catagory='catB'>
+			<span jsx jsx:type='block' jsx:called='AblockA'></span>
+			<div jsx jsx:type='define' jsx:called='templateA'></div>
+			<div jsx jsx:type='define' jsx:called='farkle' jsx:catagory='catA'></div>
+		</div>
+		<table jsx jsx:type='define' jsx:called='pleh' jsx:catagory='catA'></table>
+	</body>
+</html>

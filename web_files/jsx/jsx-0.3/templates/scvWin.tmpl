@@ -1,0 +1,28 @@
+<div style='display: none'>
+	<table name=jsx jsxType=def jsxCatagory='SecureView Player' called=SVPlayerWindow
+					jsxParams='controller' jsxParam_controller='$0'
+					border=2 style='width: 100%; height: 100%'>
+		<tr>
+			<td style='width: 240px; height: 200px;'><span name=jsx called=cal jsxType=value jsxDefault='#!self.params.controller.windows.calender.getBody()'></span></td>
+			<td name=jsx called='playerbox' jsxType=null style='' rowspan=3></td>
+		</tr><tr>
+			<td name=jsx jsxType=null style='border-style: outset; height: 10px;' onClick='this.self.params.controller.saveClick(this)'>Download Videos</td>
+		</tr><tr>
+			<td name=jsx style='width: 240px;' jsxType=null called=listbox whenAttach='#!if (!ie) self.node.style.height = self.node.clientHeight + "px";'>
+				<span name=jsx called=list jsxType=value jsxDefault='#!self.params.controller.windows.entries.getBody()'></span>
+			</td>
+		</tr>
+	</table>
+
+	<div name=jsx jsxType=def called=svPlayer class='player'
+		jsxParams='handler,VideoID,domain,player_folder,Width,Height,Background'
+		jsxParam_handler='$0'
+		jsxParam_VideoID='$1'
+		jsxParam_domain='$2'
+		jsxParam_player_folder='$3'
+		jsxParam_Width='100%'
+		jsxParam_Height='100%'
+		jsxParam_Background='#ffffff'
+	>
+	</div>
+</div>

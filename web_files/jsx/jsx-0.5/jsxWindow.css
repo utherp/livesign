@@ -1,0 +1,68 @@
+div.jsxWMFrame {
+	position: absolute;
+}
+
+table.window {
+	position: absolute;
+	display: block;
+	z-index: 1000;
+	border-style: outset;
+	border-width: 5px;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	background-image: url(http://demo.care-view.com/ezFramework/img/blubk.jpg);
+	background-position: 0 -200px;
+}
+table.window#moving table.winHeader {
+	background-color: #bbddff;
+}
+
+table.window#focused table.winHeader {
+	background-color: #88aacc;
+}
+
+table.window table.winHeader {
+	height: 20px;
+	background-color: #aaccee;
+	width: 100%;
+}
+
+table.window td div.winBody {
+	overflow: auto;
+	height: 100%;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	border: 1px black solid;
+	border-collapse: collapse;
+}
+
+table.window tr.winHeader td.winTitle {
+	font-size: 17px;
+	font-weight: bolder;
+	text-align: center;
+	vertical-align: middle;
+}
+table.window tr.winHeader td.winControls td {
+	width: 15px;
+}
+table.window tr.winHeader td.winControls {
+	text-align: right;
+	vertical-align: center;
+	width: 45px;
+}
+table.window tr.winFooter {
+	height: 15px;
+}
+table.window td.winBorder {
+	width: 10px;
+}
+
+table.window td.winControls td {
+	width: 33%;
+	height: 100%;
+	font-weight: bolder;
+	font-size: 15px;
+}
+
+
+

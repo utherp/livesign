@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <title>Sign window test</title>
+        <link rel='stylesheet' type='text/css' href='css/base.css' />
+        <script type='text/javascript' src='js/jquery.js'></script>
+        <script type='text/javascript' src='js/easing.js'></script>
+        <script type='text/javascript' src='js/window.js'></script>
+        <script type='text/javascript'>
+            function init () {
+                var win = new Window({
+                    x:100, y: 50, z:1,
+                    w:600, h: 300,
+
+                    offset:'5%',
+                    duration:15000,
+
+                    style:{ color:'white' },
+
+                    border:{ w:2, c:'#FF7F00', m:1 },
+
+                    margin:2,
+
+                    content:decodeURIComponent(escape("UTF-8 anyone?, \xE3\x83\x95\xE3\x83\xAA\xE3\x83\xBC\xE7\x99\xBE\xE7\xA7\x91\xE4\xBA\x8B\xE5\x85\xB8")),
+
+                    effects:[ 
+                        { 
+                            inherit:'scroll in left',
+                            duration:'10%'
+                        }, 
+                        {
+                            inherit:'scroll out up',
+                            offset:'10%',
+                            duration:'15%'
+                        },
+                        {
+                            inherit:'scroll in down',
+                            offset:'20%',
+                            duration:'15%'
+                        },
+                        {
+                            sequence:[ { inherit:'blink out' }, { inherit:'blink in' } ],
+                            offset:'40%',
+                            duration:'5%',
+                            repeat:3,
+/*
+                            inherit:'blink out',
+                            offset:'45%',
+                            duration:'10%'
+                        },
+                        {
+                            inherit:'blink in',
+                            offset:'55%',
+                            duration:'10%',p
+*/
+                        },
+                        {
+                            inherit:'scroll out down',
+                            offset:'70%',
+                            duration:'20%'
+                        },
+                        {
+                            inherit:'scroll out left',
+                            offset:'90%',
+                            duration:'10%'
+                        }
+                    ],
+
+                    children:[
+                        {
+                            x:10, y: 5, z:2,
+                            w:100, h:100,
+
+                            style:{ backgroundColor:'blue' },
+
+                            border:{ w:4, c:'#000000', m:3 },
+
+                            content:"images/bicycle.png",
+
+                            offset:1000,
+                            duration:'55%'
+                        },
+                        {
+                            x:110, y: 5, z:1,
+                            w:80, h:40,
+
+                            style:{ backgroundColor:'red' },
+
+                            border:{ w:1, c:'#FFFFFF', m:0 },
+
+                            margin:1,
+
+                            content:"boxA",
+
+                            offset:'50%',
+                            duration:'40%'
+                        },
+                        {
+                            x:-1, y: -1, z:5, w:130, h:95,
+
+                            style:{ backgroundColor:'red' },
+
+                            border:{ w:1, c:'#FFFFFF', m:0 },
+
+                            margin:1,
+
+                            content:"images/bart logo.png",
+
+                            offset:'25%',
+                            duration:'60%',
+
+                            children:[
+                                {
+                                    x:-15, y:-15, z:1, w:5, h:5,
+
+                                    style:{ backgroundColor:'purple' },
+
+                                    offset:'25%',
+                                    duration:'50%'
+                                }
+                            ]
+                        }
+                    ]
+                });
+
+                document.body.appendChild(win.elem[0]); //elem[0]);
+
+                win.enable();
+            }
+        </script>
+    </head>
+    <body onLoad='init();'>
+    </body>
+</html>

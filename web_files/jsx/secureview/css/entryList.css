@@ -1,0 +1,40 @@
+div.svEntryList{
+	width: 100%;
+	border: thin black solid;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+table.entryTable {
+	width: 100%;
+	border-spacing: 0px;
+	padding: 0 0 0 0;
+	top: 0px;
+}
+
+table.entryTable tr.headerRow th.headerCell {
+	border-bottom: double black solid;
+	background-color: #c3c3c3;
+}
+
+table.entryTable tr.listRow td.listCell {
+	border-bottom: thin blue solid;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+div.svEntryList table.entryTable tr#loadingTag td { 
+	font-weight: bolder;
+	background-color: #c3c3c3;
+    color: #CC0000; 
+	font-size: 14px;
+}
+
+table.entryTable tr.listRow td {
+}
+
+table.entryTable tr.listRow#selectedEntry td {
+	font-weight: bolder;
+	border: outset thin blue;
+}
+

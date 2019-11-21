@@ -1,0 +1,20 @@
+	<style>
+			div.thumbList {
+			margin: 2 0 2 0;
+			width: 90px;
+			height: 100%;
+		}
+		div.thumbList img {
+			width: 16px;
+			height: 16px;
+			float: right;
+			margin: 0 0 0 2;
+		}
+	</style>
+<div style='display: none;'>
+	<div name=jsx jsxType=def called='thumbList' class=thumbList
+		><img name=jsx called=images jsxType=list jsxDefault='#!scope[1].stdargs[0]'
+			src='' whenCreate='self.node.src = "images/events/" + self.stdargs[0] + ".jpg"'
+			title='#!self.stdargs[1] + " " + self.stdargs[0] + " events"'
+	/></div>
+</div>

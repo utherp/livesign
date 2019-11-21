@@ -1,0 +1,37 @@
+<div style='display: none'>
+	<span name=jsx id='#!(undefined!=self.id)?self.id:""' class='jsxCalender'
+			jsxtype=def called='calender' jsxParams='ctrl,date,offset,days,year,month'
+			jsxParam_ctrl='$0'
+			jsxParam_date='#!with(self)(undefined!=params.date)?params.date:((undefined!=params.timestamp)?new Date(params.timestamp):new Date)'
+			jsxParam_year='#!self.params.date.getFullYear()'
+			jsxParam_month='#!self.params.date.getMonth()'
+			jsxParam_offset='#!self.params.date.setDate(1);self.params.date.getDay()'
+			jsxParam_days='#!self.params.date.setDate(32);self.params.date.setDate(0);self.params.date.getDate()'
+		>
+		<div class='header'>
+			<div name=jsx class='nextprev' called=previousMonth jsxtype=null onClick='with(this.self){if(util.istype("function",params,"ctrl","previousMonth")){if(!params.ctrl.previousMonth(params.date))return;}else params.date.setDate(0); actions.refresh(1, false);}'>&lt;&lt;</div>
+			<div class='date'>
+				<span name=jsx jsxtype=value called=monthName jsxDefault='#!self.params.date.getMonth()' whenAssign='with(self)if(util.istype("function",params.ctrl,"lang"))value=params.ctrl.lang("months",value)'>
+				</span>,
+				<span name=jsx jsxtype=value called=year jsxDefault='#!self.params.date.getFullYear()'></span>
+			</div>
+			<div name=jsx class='nextprev' called=nextMonth jsxtype=null onClick='with(this.self){if(util.istype("function",params.ctrl,"nextMonth")){if(!params.ctrl.nextMonth(params.date)) return;} else params.date.setDate(32);actions.refresh(1, false);}'>&gt;&gt;</div>
+		</div>
+		<div name=jsx class='dayNames' called='calenderBody' jsxType=null>
+			<div name=jsx jsxType=list called='days_header' jsxDefault="#![0,1,2,3,4,5,6]">
+				<span name=jsx jsxType=value target=self jsxDefault='#!scope[1].stdargs[0]' whenAssign='with(self){if(util.istype("function",params.ctrl,"lang"))value=params.ctrl.lang("dayabr",value)}'></span>
+			</div>
+		</div>
+		<div class='dayCells'>
+			<div name=jsx class='dayCell' jsxType=list called='daylist'
+				jsxDefault='#!var i=1;var a=new Array();while (i<43)a.push(i++);a'
+				jsxParams='day' jsxParam_day='#!self.stdargs[0]-self.params.offset'
+				onClick='with(this.self)if (util.istype("function", params, "ctrl", "dayClick"))params.ctrl.dayClick(params.year, params.month, stdargs[0]-params.offset, this);'
+			>
+				<span name=jsx jsxType=value called='#!"daycell_"+scope[1].stdargs[0]'
+					jsxDefault='#!(self.params.day>0&&self.params.day<=self.params.days)?self.params.day:"";//var v=scope[1].stdargs[0]-self.params.offset;(v<1||v>self.params.days)?"":v'>
+				</span>
+			</div>
+		</div>
+	</span>
+</div>

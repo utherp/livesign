@@ -1,0 +1,44 @@
+<div style='display: none'>
+	<table name=jsx jsxType=def jsxCatagory='jsxWM' called=window class='window' jsxParams='ctrl,win'
+				jsxParam_ctrl='$0' jsxParam_win='#!new jsxWM(self.node, self.params.ctrl)'
+				id='#!self.params.win.getId()'
+				>
+		<tr class=winHeader>
+			<td colspan=3><table class=winHeader><tr>
+				<td class=winTitle name=jsx jsxType=null called=titlebar whenCreate='self.params.win.setDragBar(self.node);'>
+					<span name=jsx jsxType=value called=title jsxDefault='#!self.params.ctrl.getTitle()'></span>
+				</td>
+				<td class=winControls><table><tr>
+					<td name=jsx jsxType=list called='#!"ctrl_"+self.index' class='#!"winCtrl"+self.stdargs[0]'
+						onClick='with(this.self)return(typeof(params.win[stdargs[0]])=="function")?params.win[stdargs[0]](params):false'
+						jsxDefault='#!self.params.win.getControls()'
+					>
+						<span name=jsx called='#!"skin_"+scope[1].stdargs[0]' jsxType=value
+							jsxDefault='#!this.self.params.win.skin(scope[1].stdargs[0])'>
+						</span>
+					</td>
+				</tr></table></td>
+			</tr></table></td>
+		</tr>
+		<tr>
+			<td winBorder='left' class=winBorder>&nbsp;</td>
+			<td name=jsx jsxType=null 
+				whenCreate='self.params.win.setBody(self.node, self.params.ctrl.pos)'>
+				<div class=winBody name=jsx jsxType=null called=body whenCreate='self.params.ctrl.attach(self.node);'>
+					<!--<span name=jsx jsxType=value called=body jsxDefault='#!self.params.ctrl.getBody()'</span>-->
+				</div>
+			</td>
+			<td winBorder='right' class=winBorder>&nbsp;</td>
+		</tr>
+		<tr class=winFooter>
+			<td winBorder='bottom-left' class=winBorder>&nbsp;</td>
+			<td winBorder='bottom'>&nbsp;</td>
+			<td winBorder='bottom-right' class=winBorder 
+				name=jsx jsxType=null called='ctrl_resize'
+				whenCreate='self.params.win.setResizeBar(self.node);'
+			>
+				<span name=jsx jsxType=value called='skin_resize' jsxDefault='#!self.params.win.skin("resize")'></span>
+			</td>
+		</tr>
+	</table>
+</div>

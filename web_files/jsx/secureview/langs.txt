@@ -1,0 +1,28 @@
+var _languages = {
+	English:{
+		
+		months:['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+		days:['Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday'],
+		dayabr:['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+	},
+	French:{
+		months:['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+		days:['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
+		dayabr:['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
+	},
+	Spanish:{
+		months:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		days:['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+		dayabr:['Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb', 'Dom']
+	},
+	Italian:{
+		months:['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Màggio', 'Giugno', 'Lùglio', 'Agosto', 'Settèmbre', 'Ottàgono', 'Novèmbre', 'Dicèmbre'],
+		days:['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'],
+		dayabr:['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom']
+	},
+	German:{
+		months:['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+		days:['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
+		dayabr:['Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam', 'Son']
+	}
+}

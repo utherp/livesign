@@ -1,0 +1,71 @@
+span.jsxCalender { 
+    background-color: #D1D7DC;
+	font-size: 14px;
+	width: 100%;
+	margin: 0 0 0 0;
+}
+span.jsxCalender div.header {
+	width: 100%;
+	margin: 0 0 0 0;
+	height: 24px;
+	border-bottom: 4px double black;
+    color: #CC0000; 
+	font-size: 17px;
+    font-weight: bolder; 
+	background-color: #c3c3c3;
+}
+span.jsxCalender div.header div {
+	color: #006699;
+	font-size: 17px;
+	margin: 0 0 0 0;
+	float: left;
+}
+span.jsxCalender div.header div.nextprev {
+	background-color: #b3b3b3;
+	width: 15%;
+}
+span.jsxCalender div.header div.date {
+	text-align: center;
+	font-weight: bolder;
+	width: 70%;
+}
+span.jsxCalender div.body {
+}
+span.jsxCalender div.dayNames {
+}
+span.jsxCalender div.dayNames div {
+	font-weight: bold;
+	width: 14%;
+	float: left;
+	display: inline;
+}
+span.jsxCalender div.dayCells td {
+	width: 100%;
+}
+span.jsxCalender div.dayCells div.dayCell {
+	width: 13%;
+	height: 12%;
+	display: inline;
+	border: 1px solid black;
+	margin: 0 0 0 0;
+	float: left;
+	left: .25%;
+	font-weight: bold;
+}
+
+span.jsxCalender div.dayCells div.dayCell#selectedDay {
+	display: inline;
+	float: left;
+	background-color: yellow;
+	border-style: inset;
+	border-width: 2 3 2 3;
+	margin: 0 0 0 0;
+	width: 12%;
+	height: 12%;
+	left: .25%;
+}
+span.jsxCalender div.body tr td.hasRecords {
+	background-color: #90d0d0;
+	border-style: outset;
+}
+

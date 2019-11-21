@@ -1,0 +1,179 @@
+<html>
+	<head>
+		<script type='text/javascript' src='jsxtemplate.js'></script>
+		<script type='text/javascript' src='jsxvalue.js'></script>
+		<script type='text/javascript' src='jsxlist.js'></script>
+		<script type='text/javascript'>
+			var language = 'en';
+			var words = {
+				'en':{
+					'sunday':'SUN', 'monday':'MON', 'tuesday':'TUE', 'wednsday':'WED',
+					'thursday':'THU', 'friday':'FRI', 'saturday':'SAT',
+					'january':'January', 'february':'February', 'march':'March',
+					'april':'April', 'may':'May', 'june':'June', 'july':'July',
+					'august':'August', 'september':'September', 'october':'October',
+					'november':'November', 'december':'December',
+				}
+			};
+
+			function lang_word(word) {
+				if (undefined == words[language] || undefined == words[language][word]) return word;
+				return words[language][word];
+			}
+
+			function page_loaded() {
+				var tmp = {};
+				tmp.getId = function () { return 10; }
+				tmp.previousMonth = function () { return true; }
+				tmp.nextMonth = function () { return true; }
+				tmp.getMonthName = function () { return "october"; }
+
+				var mine = new jsxtemplate('calender', tmp);
+				document.body.appendChild(mine.tmpl);
+
+				tmp.getMonthName = function () { return "november"; };
+				var mine2 = new jsxtemplate('calender', tmp);
+				document.body.appendChild(mine2.tmpl);
+
+				return;
+			}
+			function rpad (n, c, str) {
+				var out = "" + str;
+				while (out.length < n) out += c;
+				return out;
+			}
+			function lpad (n, c, str) {
+				var out = "" + str;
+				while (out.length < n) out = c + out;
+				return out;
+			}
+
+		</script>
+		<style>
+			div.hiddenTemplate {
+				visibility: hidden;
+			};
+			div.blahclass {
+				visibility: visible;
+				background-color: green;
+			};
+			.footer {
+				font-size: 12pt;
+				font-weight: bold;
+			};
+			.newfooter {
+				font-size: 20pt;
+				font-weight: bolder;
+			};
+		</style>
+
+	</head>
+	<body onLoad='page_loaded();'>
+
+	<!-- Templates -->
+	<div style='display: none;'>
+		<!-- calender Template -->
+	<div name='xtemplate' called='calender' class='calender'>
+		<span name=xparam style='display:none;' called='this' default='$1'></span>
+		<span name=xattr style='display:none;' attrname='id' called='id' target='parent:div' default='#!self.this.getId()'></span>
+		<table class='header'><tr>
+			<td class='nav' onClick="return shebang(this, 'self.this.previousMonth()');">&lt;&lt;</td>
+			<td class='title'><span name=xvalue style='display:none;' called=monthName target=self default='#!self.this.getMonthName()' onAssign='lang_word'></span></td>
+			<td class='nav' onClick="return shebang('self.this.nextMonth()');">&gt;&gt;</td>
+		</tr></table>
+		<table class='cells' border=2><tbody>
+			<tr class='header'>
+				<span name=xdef tag=xvalue called=xvlang target=self default='#!"#!self.scope.called"' onAssign='lang_word'></span>
+				<th><span name=xvlang called=sunday></span></th>
+				<th><span name=xvlang called=monday></span></th>
+				<th><span name=xvlang called=tuesday></span></th>
+				<th><span name=xvlang called=wednsday></span></th>
+				<th><span name=xvlang called=thursday></span></th>
+				<th><span name=xvlang called=friday></span></th>
+				<th><span name=xvlang called=saturday></span></th>
+			</tr>
+			<span name=xdef called=cellbody tag=null
+				><span name=xattr called=cellattr target=parent:td name=onClick default="return shebang(this, 'self.this.cellClick()');">
+				</span><span name=xvalue called="#!'cell_' + self.scope.defcalled" target=self default="#!lpad(5, '.', self.scope.defcalled)"></span
+			></span>
+			<tr>
+				<td><span name=cellbody called=1></span></td>
+				<td><span name=cellbody called=2></span></td>
+				<td><span name=cellbody called=3></span></td>
+				<td><span name=cellbody called=4></span></td>
+				<td><span name=cellbody called=5></span></td>
+				<td><span name=cellbody called=6></span></td>
+				<td><span name=cellbody called=7></span></td>
+			</tr><tr>
+				<td><span name=cellbody called=8></span></td>
+				<td><span name=cellbody called=9></span></td>
+				<td><span name=cellbody called=10></span></td>
+				<td><span name=cellbody called=11></span></td>
+				<td><span name=cellbody called=12></span></td>
+				<td><span name=cellbody called=13></span></td>
+				<td><span name=cellbody called=14></span></td>
+			</tr><tr>
+				<td><span name=cellbody called=15></span></td>
+				<td><span name=cellbody called=16></span></td>
+				<td><span name=cellbody called=17></span></td>
+				<td><span name=cellbody called=18></span></td>
+				<td><span name=cellbody called=19></span></td>
+				<td><span name=cellbody called=20></span></td>
+				<td><span name=cellbody called=21></span></td>
+			</tr><tr>
+				<td><span name=cellbody called=22></span></td>
+				<td><span name=cellbody called=23></span></td>
+				<td><span name=cellbody called=24></span></td>
+				<td><span name=cellbody called=25></span></td>
+				<td><span name=cellbody called=26></span></td>
+				<td><span name=cellbody called=27></span></td>
+				<td><span name=cellbody called=28></span></td>
+			</tr><tr>
+				<td><span name=cellbody called=29></span></td>
+				<td><span name=cellbody called=30></span></td>
+				<td><span name=cellbody called=31></span></td>
+				<td><span name=cellbody called=32></span></td>
+				<td><span name=cellbody called=33></span></td>
+				<td><span name=cellbody called=34></span></td>
+				<td><span name=cellbody called=35></span></td>
+			</tr>
+		</tbody></table>
+	</span>
+		<!-- End of calender template -->
+
+		<!-- Entry templated -->
+	<xtemplate called='entry' tag='tr' class='video_entry'>
+		<xparam called='this' default='$1'></xattr>
+		<td class=starttime onClick="return shebang({'obj':this}, 'self.this.entryClick(obj);');">
+			<xvalue called='start' target=self default='00:00:00'></xvalue>
+		</td>
+		<td class=seperator>
+			<xvalue called='seperator' target=self default=' -- '></xvalue>
+		</td>
+		<td class=endtime onClick="return shebang({'obj':this}, 'self.this.entryClick(obj);');">
+			<xvalue called='end' target=self default='XX:XX:XX'></xvalue>
+		</td>
+	</xtemplate>
+		<!-- end of entry template -->
+
+		<!-- Entry list template -->
+	<xtemplate called='entrylist' tag=div class='video_list'>
+		<xparam called='this' default='$1'></xattr>
+		<div class='header'><xvalue called='title' target=self default='List Header'></xvalue></div>
+		<table class='video_list'><tbody>
+			<tr class=listheader>
+				<th class=starttime><xvalue called='startlabel' target=self default='Start'></xvalue></th>
+				<th class=seperator><xvalue called='seperatorlabel' target=self default=' -- '></xvalue></th>
+				<th class=endtime><xvalue called='endlabel' target=self default='End'></xvalue></th>
+			</tr>
+			<xlist called='entries' default='#!self.this.list_days()'></xlist>
+		</tbody></table>
+	</xtemplate>
+		<!-- end of entry list template -->
+
+	</div>
+	<!-- end of templates -->
+
+	</body>
+</html>
+

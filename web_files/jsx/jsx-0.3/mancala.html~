@@ -1,0 +1,188 @@
+<html>
+	<head>
+		<script type='text/javascript' src='jsx_new.js'></script>
+		<script type='text/javascript' src='jsxList.js'></script>
+		<script type='text/javascript' src='jsxPosCtrl.js'></script>
+		<script type=text/javascript src='jsxWM.js'></script>
+		<link rel=stylesheet type=text/css href='jsxWindow.css' />
+		<script type='text/javascript'>
+			var jsxBase;
+			var mancala;
+			function init() {
+				jsxBase = new jsx();
+				mancala = new jsx('mancala', null, "Mike", "Stephen");
+				mancala.getBody  = function () { return this.tmpl; };
+				mancala.getType = function () { return 'Mancala'; };
+				var myWin = new jsx('window', null, mancala, {'x':10, 'y':20, 'w':600, 'h':160, 'title':'Mancala List'});
+				myWin + ' ';
+//				document.getElementById('here').appendChild(mancala.tmpl);
+//				mancala + " ";
+			}
+			function move_stones (list, stones, last) {
+				var n = (last<7)?last-1:last+1;
+				if (n < 0) n=7;
+				else if (n == 14) n = 6;
+				var st = parseInt(list[n].self.params.stones);
+				st += 1;
+				list[n].self.params.stones = st;
+				list[n].refresh();
+				stones--;
+
+				
+				if (stones) {	
+					var l = list;
+					var s = stones;
+					setTimeout(function () { move_stones(l, s, n); }, 200);
+					return;
+				} 
+				if (list[n].self.params.stones==1 && n && n != 13) {
+					var o = (n<7)?n+6:n-6;
+					if (list[o].self.params.stones) {
+						var c = (parseInt(list[0].scope[2].params.current)-1)*13;
+						list[c].self.params.stones+=list[o].self.params.stones+1;
+						list[o].self.params.stones = 0;
+						list[n].self.params.stones = 0;
+						list[n].refresh();
+						list[c].refresh();
+						list[o].refresh();
+					}
+				}
+
+				var cell = 1;
+				do {
+					var q=false;
+					for (var i=cell; i < cell+6; i++) {
+						if (list[i].self.params.stones) {q = true; break; }
+					}
+					if (!q) {
+						alert(list[0].self.params.player1 + ": "+list[0].self.params.stones + "\n"+list[0].self.params.player2+": "+list[13].self.params.stones);
+						list[0].scope[2].actions.refresh(0, true);
+						list[0].scope[2].moving = false;
+						return true;
+					}
+					cell+=6;
+				} while (cell < 8);
+	
+				if (n != (list[0].scope[2].params.current-1)*13)
+					list[0].scope[2].params.current = (list[0].scope[2].params.current==1)?2:1;
+				list[0].scope[2].moving = false;
+				return true;
+			}
+
+			function fuckthis (obj) {
+					var index = obj.self.index;
+					with(obj){
+						if(!index||index==13)return false;
+						if (scope[2].params.current==1 && self.index>6)return false;
+						if (scope[2].params.current==2 && self.index<7)return false;
+						if (undefined == self.params.stones)self.params.stones=4;
+						if (!self.params.stones) return false;
+						if (undefined != obj.scope[2].moving && obj.scope[2].moving) return false;
+						scope[2].moving = true;
+
+						var stones = self.params.stones;
+						self.params.stones = 0;
+						self.actions.refresh();
+						move_stones(scope[1].list, stones, self.index);
+
+					}
+			};
+
+		</script>
+		<style>
+			div.mancala {
+			}
+			div.mancala div {
+				width: 12.5%;
+				float: left;
+				display: inline;
+				margin: 0;
+				padding: 0;
+			}
+			div.mancala div img {
+				margin: 0;
+				padding: 0;
+				border-width: 0;
+				width: 100%;
+				height: 100%;
+			}
+			div.mancala div.lrg {
+				height: 100%;
+			}
+			div.mancala div.sml {
+				height: 50%;
+			}
+			div.mancala div#cell_6 {
+				margin-right: 1px;
+			}
+			div.mancala div#cell_13 {
+				margin-top: -12.5%;
+			}
+
+		</style>
+	</head>
+	<body onLoad='init()'>
+		<div id='here' style='width: 800px; height: 200px;'></div>
+
+
+<div name='jsxTemplates' style='display:none'>
+	<table name=jsx jsxType=def called=window class='window' jsxParams='ctrl,opts,win'
+				jsxParam_ctrl='$0' jsxParam_opts='$1' jsxParam_win='#!new jsxWM(self.node, self.params.ctrl, self.params.opts)'
+				id='#!self.params.win.getId()'
+				>
+		<tr class=winHeader>
+			<td colspan=3><table class=winHeader><tr>
+				<td class=winTitle name=jsx jsxType=null called=titlebar whenCreate='self.params.win.setDragBar(self.node);'>
+					<span name=jsx jsxType=value called=title jsxDefault='#!self.params.opts.title'></span>
+				</td>
+				<td class=winControls><table><tr>
+					<td name=jsx jsxType=list called='#!"ctrl_"+self.index' class='#!"winCtrl"+self.stdargs[0]'
+						onClick='with(this.self)return(typeof(params.win[stdargs[0]])=="function")?params.win[stdargs[0]](params):false'
+						jsxDefault='#!self.params.win.getControls()'
+					>
+						<span name=jsx called='#!"skin_"+scope[1].stdargs[0]' jsxType=value
+							jsxDefault='#!this.self.params.win.skin(scope[1].stdargs[0])'>
+						</span>
+					</td>
+				</tr></table></td>
+			</tr></table></td>
+		</tr>
+		<tr>
+			<td winBorder='left' class=winBorder>&nbsp;</td>
+			<td name=jsx jsxType=null 
+				whenCreate='with(self.params)win.setBody(self.node, opts)'>
+				<div class=winBody><span name=jsx jsxType=value called=body jsxDefault='#!self.params.ctrl.getBody()'></span></div>
+			</td>
+			<td winBorder='right' class=winBorder>&nbsp;</td>
+		</tr>
+		<tr class=winFooter>
+			<td winBorder='bottom-left' class=winBorder>&nbsp;</td>
+			<td winBorder='bottom'>&nbsp;</td>
+			<td winBorder='bottom-right' class=winBorder 
+				name=jsx jsxType=null called='ctrl_resize'
+				whenCreate='self.params.win.setResizeBar(self.node);'
+			>
+				<span name=jsx jsxType=value called='skin_resize' jsxDefault='#!self.params.win.skin("resize")'></span>
+			</td>
+		</tr>
+	</table>
+	
+	<div class=mancala name=jsx called='mancala' jsxType=def jsxParams='player1,player2,current' jsxParam_player1='$0' jsxParam_player2='$1' jsxParam_current='1'>
+		<div id='#!"cell_"+self.index' name=jsx called='cells' jsxType=list jsxDefault='#![0,4,4,4,4,4,4,4,4,4,4,4,4,0]'
+			jsxParams='stones'
+			jsxParam_stones='#!(undefined==self.params.stones)?self.stdargs[0]:self.params.stones'
+				onClick='fuckthis(this)'>
+			<img name=jsx called='#!"cell_"+scope[1].index' jsxType=null 
+				whenCreate='#!scope[1].node.className=(!scope[1].index || scope[1].index==13)?"lrg":"sml"'
+				whenRefresh='#!if(undefined==self.params.stones)self.params.stones=(scope[1].index==13||!scope[1].index)?0:4;self.node.src="mancala/"+((!scope[1].index || scope[1].index == 13)?"lrg/":"sml/")+self.params.stones+".gif"'
+				src='#!if(undefined==self.params.stones)self.params.stones=(scope[1].index==13||!scope[1].index)?0:4;"mancala/"+((!scope[1].index || scope[1].index == 13)?"lrg/":"sml/")+self.params.stones+".gif"'>
+			
+		</div>
+	</div>
+</div>
+
+	</table>
+
+	</body>
+</html>
+

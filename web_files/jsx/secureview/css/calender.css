@@ -1,0 +1,61 @@
+table.body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+table.body tr td.header {
+    background-color: #D1D7DC;
+	font-size: 14px;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 30px;
+    color: #CC0000; 
+	font-size: 17px;
+    font-weight: bolder; 
+	background-color: #c3c3c3;
+	margin: 0;
+	padding: 0;
+	border-width: 0;
+}
+td.header table {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+table.body td.header td {
+	color: #006699;
+	font-size: 17px;
+	border: outset #c0c0c0; 
+}
+td.header td.navctrl {
+	width: 40px;
+}
+td.header td.date {
+	text-align: center;
+	font-weight: bolder;
+}
+table.body tr.dayNames {
+	height: 20px;
+}
+table.body tr.dayNames th {
+	font-weight: bold;
+	width: 14%;
+}
+table.body tr td {
+	text-align: center;
+	background-color: #e5e5e5; 
+	border: thin solid #c3c3c3;
+}
+
+table.body tr td#selectedDay {
+	border-style: inset;
+}
+table.body tr td.highlight {
+	background-color: #90d0d0;
+	border-style: outset;
+}
+

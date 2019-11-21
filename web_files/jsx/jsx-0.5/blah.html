@@ -1,0 +1,53 @@
+<html>
+	<head><script src='jquery.js'></script>
+		<script>
+		function tryit() {
+			var blah = function () { }
+			var pleh = function () { }
+
+			blah.prototype = {
+				'fromBlah':"From Blah"
+			};
+			pleh.prototype = $.extend(
+				new blah(), 
+				{
+					'fromPleh':"From Pleh"
+				}
+			);
+
+			var inst = new pleh();
+			inst.__proto__ = pleh.prototype;
+
+			inst.constructor.prototype = blah.prototype;
+			var tmp = new inst.constructor();
+
+			var str = '';
+			for (var i in inst.constructor)
+				str += '"'+i+'": "'+inst.constructor[i]+'"<br />';
+
+			document.write(str + "<br /><br />");
+
+//			document.write(blah.constructor.prototype.toSource() + "<br /><br />");
+//			document.write(inst.__proto__.toSource() + "<br /><br />");
+
+			document.write(inst instanceof blah ? "its of blah<br />" : "its not blah<br />");
+
+			document.write("inst.fromBlah == '" + inst.fromBlah + "'<br />");
+			return;
+//			for (var i in blah.prototype)
+//				inst[i] = new blah();
+
+			inst = $.extend(inst, pleh.prototype)
+
+			for (var i in pleh.prototype)
+				inst[i] = pleh.prototype[i];
+
+			document.write(inst instanceof blah ? "of blah<br />" : "not of blah<br />");
+			document.write(inst instanceof pleh ? "of pleh<br />" : "not of pleh<br />");
+		}
+		</script>
+	</head>
+	<body onload='tryit();'>
+	</body>
+</html>
+

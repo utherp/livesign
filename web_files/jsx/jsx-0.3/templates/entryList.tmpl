@@ -1,0 +1,23 @@
+<div style='display: none'>
+	<div name=jsx jsxType=def called='tableList'
+		whenCreate='self.node.className = self.params.handler.tableClass'
+		jsxParams='handler' jsxParam_handler='$0'>
+		<table class='entryTable'>
+			<tr class=headerRow>
+				<th class=headerCell name=jsx called='headerList' jsxType='list'
+					jsxDefault='#!(undefined != self.params.handler)?self.params.handler.getHeaders():[]'>
+					<span name=jsx jsxType=value jsxDefault='#!scope[1].stdargs[0]'></span>
+				</th>
+			</tr>
+			<tr name=jsx class=listRow jsxType=list called='listRow'
+				jsxDefault='#!(undefined != self.params.handler)?self.params.handler.getRows():[]'
+				onClick='with(this.self)if(undefined!=params.handler)return params.handler.entryClick(index,this);return true;'
+			>
+				<td name=jsx class=listCell jsxType=list called='listCell' jsxDefault='#!scope[1].stdargs'>
+					<span name=jsx called='#!"cell_"+scope[2].index+"x"+self.index' jsxDefault='#!scope[1].stdargs[0]'
+					jsxType=value jsxDefault='#!scope[1].stdargs[0]'></span>
+				</td>
+			</tr></tbody>
+		</table>
+	</div>
+</div>
